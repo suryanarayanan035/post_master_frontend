@@ -35,9 +35,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-
-
-put the following at the  end of your $HOMe/.bashrc
+put the following at the end of your $HOMe/.bashrc
 cdnvm() {
     command cd "$@" || return $?
     nvm_path="$(nvm_find_up .nvmrc | command tr -d '\n')"
@@ -78,6 +76,7 @@ cdnvm() {
             nvm use "${nvm_version}";
         fi
     fi
+
 }
 
 alias cd='cdnvm'
