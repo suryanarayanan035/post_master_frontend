@@ -92,7 +92,7 @@ cdnvm "$PWD" || exit
 
 
 ### Folder Structure
-
+```
 ├── components.json - used by shadcn
 ├── tailwind.config.js - Configuration for tailwind
 ├── deployment.sh - will be adding script to automate deployment here.
@@ -117,4 +117,4 @@ cdnvm "$PWD" || exit
     │   └── ui - This folder will contain the components added from shadcn
     └── lib
         └── utils.js - Used by shadcn
-
+```
