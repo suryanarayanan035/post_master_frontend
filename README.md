@@ -81,3 +81,40 @@ cdnvm() {
 
 alias cd='cdnvm'
 cdnvm "$PWD" || exit
+
+# Good to know
+
+### Start in HTTP
+```npm run dev```
+
+### start in HTTPS
+```npm run dev --experimental-https```
+
+
+### Folder Structure
+
+├── components.json - used by shadcn
+├── tailwind.config.js - Configuration for tailwind
+├── deployment.sh - will be adding script to automate deployment here.
+├── jsconfig.json - configuration for js
+├── next.config.mjs - Configuration for next js
+├── package.json - File for maintaining scripts and dependencies
+├── package-lock.json - Same as package.json but the version of dependencies will be locked.
+├── postcss.config.mjs - Configuration of PostCSS
+├── public - folder for assets such as images and clips
+├── README.md - This file
+├── src - Folder containing actual business logic
+    ├── app
+    │   ├── components - any custom component that is built will reside here
+    │   ├── favicon.ico - favicon file for the site. The icon you see at the title bar 
+    │   ├── fonts
+    │   ├── globals.css - css file containing global variables
+    │   ├── layout.js - specifies common layout for the whole application. The layout.js inside each folder will take precedence over this layout.js.
+    │   ├── page.js - File for homepage
+    │   ├── siteData.js - Contains data about commonly used UI elements such as plans, features and etc.
+    │   └── .... other page folders
+    ├── components - This folder is used by shadcn
+    │   └── ui - This folder will contain the components added from shadcn
+    └── lib
+        └── utils.js - Used by shadcn
+
