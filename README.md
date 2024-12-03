@@ -85,13 +85,15 @@ cdnvm "$PWD" || exit
 # Good to know
 
 ### Start in HTTP
-```npm run dev```
+
+`npm run dev`
 
 ### start in HTTPS
-```npm run dev --experimental-https```
 
+`npm run dev --experimental-https`
 
 ### Folder Structure
+
 ```
 ├── components.json - used by shadcn
 ├── tailwind.config.js - Configuration for tailwind
@@ -105,16 +107,30 @@ cdnvm "$PWD" || exit
 ├── README.md - This file
 ├── src - Folder containing actual business logic
     ├── app
-    │   ├── components - any custom component that is built will reside here
-    │   ├── favicon.ico - favicon file for the site. The icon you see at the title bar 
-    │   ├── fonts
-    │   ├── globals.css - css file containing global variables
-    │   ├── layout.js - specifies common layout for the whole application. The layout.js inside each folder will take precedence over this layout.js.
-    │   ├── page.js - File for homepage
-    │   ├── siteData.js - Contains data about commonly used UI elements such as plans, features and etc.
-    │   └── .... other page folders
+    │   ├── components - any custom component that is built will reside here
+    │   ├── favicon.ico - favicon file for the site. The icon you see at the title bar
+    │   ├── fonts
+    │   ├── globals.css - css file containing global variables
+    │   ├── layout.js - specifies common layout for the whole application. The layout.js inside each folder will take precedence over this layout.js.
+    │   ├── page.js - File for homepage
+    │   ├── siteData.js - Contains data about commonly used UI elements such as plans, features and etc.
+    │   └── .... other page folders
     ├── components - This folder is used by shadcn
-    │   └── ui - This folder will contain the components added from shadcn
+    │   └── ui - This folder will contain the components added from shadcn
     └── lib
         └── utils.js - Used by shadcn
+        
 ```
+# ESLint and prettier setup
+
+eslint-config-airbnb
+Prettier and ESLint checks will run on every pre-commit
+Unless all the ESLint errors reported in a pre-commit are fixed, changes cannot be pushed to the branch
+
+Additionally, run eslint explicitly using "npm run lint" command
+
+Skip pre-commit checks with the command: git commit -m "commit-message" --no-verify --> ****NOT A GOOD PRACTICE**** but can be acceptable in case of very small changes and developer confident about the code to be pushed
+
+DONOT PUSH TO MASTER WITHOUT RUNNING PRE-COMMIT!!!
+
+
