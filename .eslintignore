@@ -1,0 +1,5 @@
+sentry.*.js
+tailwind.config.js
+src/instrumentation.js
+src/lib/**
+src/ui/**

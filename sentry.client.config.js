@@ -3,17 +3,16 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 // https://ddecb2b6e24f04df018308c3ed104e2d@o4508366075396096.ingest.us.sentry.io/4508366075658240
 
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
   // Add optional integrations for additional features
-  integrations: [
-    Sentry.replayIntegration(),
-  ],
+  integrations: [Sentry.replayIntegration()],
 
-  // Define how likely traces are sampled. Adjust this value in production, or use tracesSampler for greater control.
+  // Define how likely traces are sampled. Adjust this value in production,
+  // or use tracesSampler for greater control.
   tracesSampleRate: 1,
 
   // Define how likely Replay events are sampled.
@@ -24,6 +23,7 @@ Sentry.init({
   // Define how likely Replay events are sampled when an error occurs.
   replaysOnErrorSampleRate: 1.0,
 
-  // Setting this option to true will print useful information to the console while you're setting up Sentry.
+  // Setting this option to true will print useful information to the console
+  // while you're setting up Sentry.
   debug: false,
 });
