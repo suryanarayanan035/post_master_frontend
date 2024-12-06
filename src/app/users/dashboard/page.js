@@ -1,9 +1,10 @@
-import React from "react";
-const Dashboard = () => {
+import React from 'react';
+
+function Dashboard() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center">
       Dashboard screen
     </div>
   );
-};
+}
 export default Dashboard;

@@ -119,8 +119,9 @@ cdnvm "$PWD" || exit
     │   └── ui - This folder will contain the components added from shadcn
     └── lib
         └── utils.js - Used by shadcn
-        
+
 ```
+
 # ESLint and prettier setup
 
 eslint-config-airbnb
@@ -129,8 +130,6 @@ Unless all the ESLint errors reported in a pre-commit are fixed, changes cannot 
 
 Additionally, run eslint explicitly using "npm run lint" command
 
-Skip pre-commit checks with the command: git commit -m "commit-message" --no-verify --> ****NOT A GOOD PRACTICE**** but can be acceptable in case of very small changes and developer confident about the code to be pushed
+Skip pre-commit checks with the command: git commit -m "commit-message" --no-verify --> \***\*NOT A GOOD PRACTICE\*\*** but can be acceptable in case of very small changes and developer confident about the code to be pushed
 
 DONOT PUSH TO MASTER WITHOUT RUNNING PRE-COMMIT!!!
-
-
