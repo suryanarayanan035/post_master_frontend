@@ -32,13 +32,13 @@ export default class UsersAPI {
 
   async loginUser(username, password) {
     try {
-      const { data } = await this.axiosInstance.post('login/', {
+      const { data } = await this.axiosInstance.post('/login/', {
         username,
         password,
       });
       return { data };
     } catch (error) {
-      return { error: this.handleError(error) };
+      return { error: UsersAPI.handleError(error) };
     }
   }
 }

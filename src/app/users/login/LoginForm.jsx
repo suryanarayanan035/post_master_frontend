@@ -1,12 +1,14 @@
 'use client';
 
 import Link from 'next/link';
+import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import UsersAPI from '@APIs/UsersAPI';
 import { useRouter } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import {extractErrorMessage, setCookie}  from '@lib/utils';
+import { extractErrorMessage, setCookie } from '@lib/utils';
+import { Button } from '@/components/ui/button';
 
 export default function LoginForm() {
   const schema = yup.object({
@@ -25,17 +27,17 @@ export default function LoginForm() {
         'len',
         'Password cannot exceed 100 characters',
         (val) => val.length < 100,
-      )
+      ),
   });
   const router = useRouter();
   const {
     register,
     handleSubmit,
     trigger,
-    formState: { errors },
+    formState: { errors, isSubmitting, isValidating },
   } = useForm({ resolver: yupResolver(schema) });
 
-	//eslint-disable-next-line consistent-return
+  // eslint-disable-next-line consistent-return
   const onSubmit = async (data) => {
     const { username, password } = data;
     const { error, data: responseData } = await new UsersAPI().loginUser(
@@ -47,10 +49,9 @@ export default function LoginForm() {
       return router.push('/users/dashboard');
     }
 
-	  alert(extractErrorMessage(error))
-
-     };
-
+    /* eslint-disable-next-line no-undef,no-alert */
+    alert(extractErrorMessage(error));
+  };
 
   const handleBlur = (e) => {
     trigger([e.target.name]);
@@ -63,7 +64,7 @@ export default function LoginForm() {
       <h2 className="mb-4 text-2xl font-bold">Login</h2>
       <div className="mb-4">
         {' '}
-	  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="block text-gray-700" htmlFor="username">
           Username
         </label>
@@ -76,7 +77,7 @@ export default function LoginForm() {
       </div>{' '}
       <div className="mb-4">
         {' '}
-		  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="block text-gray-700" htmlFor="password">
           Password
         </label>
@@ -108,14 +109,15 @@ export default function LoginForm() {
           {errors[key].message}
         </div>
       ))}{' '}
-      <button
-        type="submit"
-        onClick={handleSubmit}
-        className="w-full rounded bg-blue-500 p-2 text-white"
-      >
-        {' '}
-        Login{' '}
-      </button>
+      <Button type="submit" disabled={isSubmitting || isValidating}>
+        {isSubmitting || isValidating ? (
+          <>
+            <Loader2 className="animate-spin" /> Please wait
+          </>
+        ) : (
+          'Login'
+        )}
+      </Button>
     </form>
   );
 }
