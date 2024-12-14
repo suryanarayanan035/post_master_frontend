@@ -38,12 +38,16 @@ function ForgotPasswordPage() {
   };
 
   const handleCloseSnackbar = () => {
-    setOpenSnackbar(false);
+    setOpenSnackbar({
+      open: false,
+      text: '',
+      variant: '',
+    });
   };
 
   const sendResetLinkToEmail = async (data) => {
     const { email } = data;
-    if(!errors.email && email) {
+    if (!errors.email && email) {
       const { error, data: responseData } = await new UsersAPI().forgotPassword(
         email,
       );
