@@ -60,6 +60,7 @@ export default function LoginForm() {
     <form
       className="w-full max-w-sm rounded bg-white p-6 shadow-md"
       onSubmit={handleSubmit(onSubmit)}
+      data-testid="login-form"
     >
       <h2 className="mb-4 text-2xl font-bold">Login</h2>
       <div className="mb-4">
@@ -112,7 +113,11 @@ export default function LoginForm() {
       <Button type="submit" disabled={isSubmitting || isValidating}>
         {isSubmitting || isValidating ? (
           <>
-            <Loader2 className="animate-spin" /> Please wait
+            <Loader2
+              className="animate-spin"
+              data-testid="login-loginform-loader"
+            />{' '}
+            Please wait
           </>
         ) : (
           'Login'

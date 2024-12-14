@@ -15,7 +15,7 @@ jobs:
       - uses: cypress-io/github-action@v6
         with:
           install-command: npm ci --legacy-peer-deps
-          build: npm run build
+          build: npm run dev
           start: npm start
           browser: firefox
   Deploy-Production:
