@@ -19,7 +19,7 @@ jobs:
         with:
           install-command: npm ci --legacy-peer-deps
           build: npm run build
-          start: npm start:test
+          start: npm run start:test
           browser: firefox
   Deploy-Preview:
     runs-on: ubuntu-latest
