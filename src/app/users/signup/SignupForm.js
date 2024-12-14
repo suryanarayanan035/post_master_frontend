@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 function SignupForm() {
   const phoneRegex =
@@ -45,6 +46,7 @@ function SignupForm() {
   const {
     register,
     handleSubmit,
+    watch,
     trigger,
     formState: { errors, dirtyFields },
   } = useForm({
@@ -88,50 +90,59 @@ function SignupForm() {
       onSubmit={handleSubmit(signupUser)}
     >
       <p className="font-semibold text-[#8b5cf6]">Create your account</p>
-      <input
-        type="text"
-        name="username"
-        {...register('username')}
-        placeholder="Username"
-        onBlur={handleBlur}
-        className={`h-10 w-70 rounded border ${borderColour('username')} p-3 focus:border-gray-500`}
-      />
-      {errors.username?.message && (
-        <p className="w-70 text-red-500">{errors.username?.message}</p>
-      )}
-      <input
-        type="text"
-        name="email"
-        {...register('email')}
-        placeholder="Email"
-        onBlur={handleBlur}
-        className={`h-10 w-70 rounded border ${borderColour('email')} p-3 focus:border-gray-500`}
-      />
-      {errors.email?.message && (
-        <p className="w-70 text-red-500">{errors.email?.message}</p>
-      )}
-      <input
-        type="text"
-        name="phoneNumber"
-        {...register('phoneNumber')}
-        placeholder="Phone Number"
-        onBlur={handleBlur}
-        className={`h-10 w-70 rounded border ${borderColour('phoneNumber')} p-3 focus:border-gray-500`}
-      />
-      {errors.phoneNumber?.message && (
-        <p className="w-70 text-red-500">{errors.phoneNumber?.message}</p>
-      )}
-      <input
-        type="password"
-        name="password"
-        {...register('password')}
-        placeholder="Password"
-        onBlur={handleBlur}
-        className={`h-10 w-70 rounded border ${borderColour('password')} p-3 focus:border-gray-500`}
-      />
-      {errors.password?.message && (
-        <p className="w-70 text-red-500">{errors.password?.message}</p>
-      )}
+      <div className="w-70 space-y-2">
+        <input
+          type="text"
+          name="username"
+          {...register('username')}
+          placeholder="Username"
+          onBlur={handleBlur}
+          className={`h-10 w-full rounded border ${borderColour('username')} p-3 focus:border-gray-500`}
+        />
+        {errors.username?.message && (
+          <p className="w-full text-red-500 text-sm">{errors.username?.message}</p>
+        )}
+      </div>
+      <div className="w-70 space-y-2">
+        <input
+          type="text"
+          name="email"
+          {...register('email')}
+          placeholder="Email"
+          onBlur={handleBlur}
+          className={`h-10 w-full rounded border ${borderColour('email')} p-3 focus:border-gray-500`}
+        />
+        {errors.email?.message && (
+          <p className="w-full text-red-500 text-sm">{errors.email?.message}</p>
+        )}
+      </div>
+      <div className="w-70 space-y-2">
+        <input
+          type="text"
+          name="phoneNumber"
+          {...register('phoneNumber')}
+          placeholder="Phone Number"
+          onBlur={handleBlur}
+          className={`h-10 w-full rounded border ${borderColour('phoneNumber')} p-3 focus:border-gray-500`}
+        />
+        {errors.phoneNumber?.message && (
+          <p className="w-full text-red-500 text-sm">{errors.phoneNumber?.message}</p>
+        )}
+      </div>
+      <div className="w-70 space-y-2">
+        <input
+          type="password"
+          name="password"
+          {...register('password')}
+          placeholder="Password"
+          onBlur={handleBlur}
+          className={`h-10 w-full rounded border ${borderColour('password')} p-3 focus:border-gray-500`}
+        />
+        <PasswordStrengthBar className="w-full" password={watch('password')} />
+        {errors.password?.message && (
+          <p className="m-0 w-full text-red-500 text-sm">{errors.password?.message}</p>
+        )}
+      </div>
       <Link href="/users/login" className="w-70 font-semibold text-[#2563eb]">
         Already have an account? Login here!
       </Link>
