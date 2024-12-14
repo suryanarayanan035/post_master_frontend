@@ -41,4 +41,13 @@ export default class UsersAPI {
       return { error: UsersAPI.handleError(error) };
     }
   }
+
+  async signupUser(params) {
+    try {
+      const { data } = await this.axiosInstance.post('signup/', params);
+      return { data };
+    } catch (error) {
+      return { error: this.handleError(error) };
+    }
+  }
 }
