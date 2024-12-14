@@ -52,4 +52,15 @@ export default class UsersAPI {
       return { error: UsersAPI.handleError(error) };
     }
   }
+
+  async resetPassword(newPassword) {  
+    try {
+      const { data } = await this.axiosInstance.post('/reset-password/', {
+        newPassword,
+      });
+      return { data };
+    } catch (error) {
+      return { error: UsersAPI.handleError(error) };
+    }
+  }
 }

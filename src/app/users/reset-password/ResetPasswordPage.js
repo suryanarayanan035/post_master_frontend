@@ -72,7 +72,7 @@ function ResetPasswordPage() {
       !errors.newPassword?.message &&
       !errors.confirmPassword?.message
     ) {
-      const { error, data: responseData } = await new UsersAPI().forgotPassword(
+      const { error, data: responseData } = await new UsersAPI().resetPassword(
         newPassword,
       );
       setOpenSnackbar({
