@@ -43,14 +43,18 @@ function ForgotPasswordPage() {
 
   const sendResetLinkToEmail = async (data) => {
     const { email } = data;
-    const { error, data: responseData } = await new UsersAPI().forgotPassword(
-      email,
-    );
-    setOpenSnackbar({
-      open: !!(error || responseData?.message || responseData?.error),
-      text: error || responseData?.message || responseData?.error,
-      variant: error || responseData.error ? 'error' : 'success',
-    });
+    if(!errors.email && email) {
+      const { error, data: responseData } = await new UsersAPI().forgotPassword(
+        email,
+      );
+      setOpenSnackbar({
+        open: !!(error || responseData?.message || responseData?.error),
+        text: error || responseData?.message || responseData?.error,
+        variant: error || responseData.error ? 'error' : 'success',
+      });
+    } else {
+      trigger(['email']);
+    }
   };
 
   return (

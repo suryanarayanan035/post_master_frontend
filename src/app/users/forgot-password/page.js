@@ -1,5 +1,5 @@
 import React from 'react';
-import { ForgotPasswordPage } from './ForgotPassword';
+import ForgotPasswordPage from './ForgotPassword';
 
 function ForgotPassword() {
   return (
