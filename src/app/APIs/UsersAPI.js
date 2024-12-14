@@ -41,4 +41,15 @@ export default class UsersAPI {
       return { error: UsersAPI.handleError(error) };
     }
   }
+
+  async forgotPassword(email) {
+    try {
+      const { data } = await this.axiosInstance.post('/forgot-password/', {
+        email,
+      });
+      return { data };
+    } catch (error) {
+      return { error: UsersAPI.handleError(error) };
+    }
+  }
 }
