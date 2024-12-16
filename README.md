@@ -133,3 +133,16 @@ Additionally, run eslint explicitly using "npm run lint" command
 Skip pre-commit checks with the command: git commit -m "commit-message" --no-verify --> \***\*NOT A GOOD PRACTICE\*\*** but can be acceptable in case of very small changes and developer confident about the code to be pushed
 
 DONOT PUSH TO MASTER WITHOUT RUNNING PRE-COMMIT!!!
+
+
+
+# Environment Variables
+variable starts with NEXT_PUBLIC_ will be available to the client side
+variable starts with NEXT_ will be available to the server side(Don't ever expose this to client side)
+| NAME | DESCRIPTION |
+|--|--|
+| NEXT_PUBLIC_BACKEND_BASE_URL | URL of  the backend to use in the browser environment(Client Side) |
+| NEXT_BACKEND_BASE_URL | URL of the backend to use in the Node environent(Server Side).|
+| NEXT_PUBLIC_RAZORPAY_API_KEY_ID | RAZORPAY ID to use for payment checkouts.|
+| NEXT_PUBLIC_SENTRY_DSN | Sentry DSN URL to use in browser environment. Client Side errors will be sent to this URL.|
+| NEXT_SENRTRY_DSN | Sentry DSN URL to use in node environment(browser). Server Side errors wil be sent to this URL.|
