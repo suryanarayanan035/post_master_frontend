@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Card,
   CardHeader,
@@ -8,19 +10,27 @@ import {
 import { Button } from '@/components/ui/button';
 
 function PlanCard(props) {
-  const { name, price, features, buttonText, className, onClickCTA } = props;
+  const {
+    title,
+    price,
+    description,
+    buttonText,
+    className,
+    onClickCTA,
+    id: planID,
+  } = props;
   return (
     <Card className={className}>
       <CardHeader>
         <CardTitle className="text-center">
-          {name}
+          {title}
           <p className="inline text-blue-700">{price}</p>
         </CardTitle>
       </CardHeader>
       <CardContent>
         <CardDescription>
           <ul>
-            {features.map((feature) => (
+            {description.map((feature) => (
               <li key={feature}>
                 <p className="inline pl-4 text-blue-500">&#10004;</p>
                 {feature}
@@ -30,7 +40,7 @@ function PlanCard(props) {
           <div className="my-4 text-center">
             <Button
               onClick={() => {
-                onClickCTA(name.includes('PRO') ? 'PRO' : 'STANDARD');
+                onClickCTA(planID);
               }}
             >
               {buttonText}
@@ -48,7 +58,8 @@ export default function PlanCards(props) {
       {cards.map((card) => (
         <PlanCard
           {...card}
-          key={card}
+          buttonText={`BUY ${card.name}`}
+          key={card.id}
           className="grow"
           onClickCTA={onClickCTA}
         />

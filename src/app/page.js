@@ -1,9 +1,8 @@
-'use client';
-
 import Image from 'next/image';
 import PlanCards from '@components/PlanCards';
-import axios from 'axios';
-import { HOME_PAGE_CARDS, PLAN_CARDS } from '@/app/siteData';
+import { extractErrorMessage } from '@lib/utils';
+import { PlansAPI } from '@APIs/PlansAPI';
+import { HOME_PAGE_CARDS } from '@/app/siteData';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const heroImageStyles = {
@@ -14,8 +13,20 @@ const heroImageStyles = {
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
 };
-export default function Home() {
-  const onClickCreateAccount = (accountType) => {
+export default async function Home() {
+  const response = await new PlansAPI().getPlans();
+  let { data: plans } = response;
+  const { error } = response;
+  if (error) {
+    // eslint-disable-next-line no-console
+    console.error(extractErrorMessage(error));
+    plans = [];
+  }
+  plans = plans.map((plan) => ({
+    ...plan,
+    description: plan.description.split('\n'),
+  }));
+  /* const onClickCreateAccount = (accountType) => {
     axios.get(
       `http://localhost:8000/external_app/authorize?account_type=${accountType}`,
       {
@@ -25,7 +36,7 @@ export default function Home() {
         },
       },
     );
-  };
+  }; */
   return (
     <div className="m-auto grid w-70 auto-cols-fr">
       <div className="mb-4 text-lg font-medium">
@@ -41,7 +52,7 @@ export default function Home() {
       <div className="flex gap-2 bg-white">
         {HOME_PAGE_CARDS.map((card) => (
           // TODO:use proepr key below
-          <Card key={card}>
+          <Card key={card.title}>
             <CardHeader>
               <Image
                 className="mx-auto text-center"
@@ -60,8 +71,21 @@ export default function Home() {
       </div>
       <div>
         <h3 className="my-4 text-4xl font-bold">Get Started</h3>
-        <PlanCards cards={PLAN_CARDS} onClickCTA={onClickCreateAccount} />
+        <PlanCards cards={plans} />
       </div>
     </div>
   );
 }
+
+/* export async function getServerSideProps() {
+  const { data: plans, error } = new PlansAPI().getPlans();
+  if (error) {
+    console.error(extractErrorMessage(error));
+    return {
+      props: { plans: [] },
+    };
+  }
+  return {
+    props: { plans },
+  };
+} */

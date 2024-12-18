@@ -1,33 +1,13 @@
 import axios from 'axios';
+import { API } from '@APIs/API';
 
-export default class UsersAPI {
+export default class UsersAPI extends API {
   constructor() {
+    super();
     this.API_PATH = 'users/';
     this.axiosInstance = axios.create({
       baseURL: process.env.NEXT_PUBLIC_BACKEND_BASE_URL + this.API_PATH,
     });
-  }
-
-  static handleError(error) {
-    if (error.response) {
-      const { status, statusText, data } = error.response;
-      return {
-        statusCode: status,
-        message: statusText,
-        data,
-      };
-    }
-
-    if (error.request) {
-      return {
-        statusCode: 0,
-        message: 'NETWORK ERROR',
-      };
-    }
-
-    return {
-      message: 'REQUEST IS NOT SETUP CORRECTLY',
-    };
   }
 
   async loginUser(username, password) {

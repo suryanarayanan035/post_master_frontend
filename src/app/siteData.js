@@ -27,7 +27,8 @@ export const HOME_PAGE_CARDS = [
 
 export const PLAN_CARDS = [
   {
-    name: 'Post Master Standard',
+    title: 'Post Master Standard',
+    id: 2,
     price: 'FREE',
     features: [
       '5 Schedules a month.',
@@ -37,7 +38,8 @@ export const PLAN_CARDS = [
     buttonText: 'Create FREE account!',
   },
   {
-    name: 'Post Master PRO',
+    title: 'Post Master PRO',
+    id: 3,
     price: '10$/month',
     features: [
       '200 Schedules a month for each platform.',
