@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 
 function PlanCard(props) {
   const {
-    title,
+    name,
     price,
     description,
     buttonText,
@@ -23,7 +23,7 @@ function PlanCard(props) {
     <Card className={className}>
       <CardHeader>
         <CardTitle className="text-center">
-          {title}
+          {name}
           <p className="inline text-blue-700">{price}</p>
         </CardTitle>
       </CardHeader>
@@ -40,7 +40,7 @@ function PlanCard(props) {
           <div className="my-4 text-center">
             <Button
               onClick={() => {
-                onClickCTA(planID);
+                onClickCTA({ planID });
               }}
             >
               {buttonText}
@@ -52,14 +52,14 @@ function PlanCard(props) {
   );
 }
 export default function PlanCards(props) {
-  const { cards, onClickCTA } = props;
+  const { plans, onClickCTA } = props;
   return (
     <div className="flex">
-      {cards.map((card) => (
+      {plans.map((plan) => (
         <PlanCard
-          {...card}
-          buttonText={`BUY ${card.name}`}
-          key={card.id}
+          {...plan}
+          buttonText={`BUY ${plan.name}`}
+          key={plan.id}
           className="grow"
           onClickCTA={onClickCTA}
         />

@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 export class API {
   static handleError(error) {
     if (error.response) {
@@ -18,6 +20,14 @@ export class API {
     return {
       message: 'REQUEST IS NOT SETUP CORRECTLY',
     };
+  }
+
+  static getUserAccessToken() {
+    return Cookies.get('accessToken');
+  }
+
+  static createAuthenticationHeaders() {
+    return { Authorization: `Token ${this.getUserAccessToken()}` };
   }
 }
 

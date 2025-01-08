@@ -28,5 +28,5 @@ export async function middleware(request) {
   }
 }
 export const config = {
-  matcher: '/users/:path*',
+  matcher: ['/users/:path*', '/payments/:path*'],
 };
