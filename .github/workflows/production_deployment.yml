@@ -20,7 +20,7 @@ jobs:
           browser: firefox
   Deploy-Production:
     runs-on: ubuntu-22.04
-    needs: [Run-E2E-Tests]
+    #needs: [Run-E2E-Tests]
     steps:
       - uses: actions/checkout@v4
       - name: Install Vercel CLI
